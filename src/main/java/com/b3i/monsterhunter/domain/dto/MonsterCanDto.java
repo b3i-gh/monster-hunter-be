@@ -17,4 +17,7 @@ public class MonsterCanDto {
     private Long cc;
     private String lang;
     private String creationDate;
+    private String syncDate;
+    private Boolean sugarFree;
+    private Boolean deleted;
 }

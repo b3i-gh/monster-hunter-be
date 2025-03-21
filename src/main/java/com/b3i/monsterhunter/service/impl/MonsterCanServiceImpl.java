@@ -7,7 +7,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -32,6 +34,23 @@ public class MonsterCanServiceImpl implements MonsterCanService {
     }
 
     @Override
+    public MonsterCan updateCan(MonsterCan monsterCan) {
+        if(!monsterCanRepository.existsById(monsterCan.getId())){
+            throw new IllegalArgumentException("Can not found");
+        }
+
+        // Check if the syncDate on the updated can is after the one saved on the DB
+        LocalDateTime deletingCanSyncDate = monsterCan.getSyncDate();
+        LocalDateTime savedCanSyncDate = getSyncDateById(monsterCan.getId());
+        if(deletingCanSyncDate.isAfter(savedCanSyncDate))
+            return monsterCanRepository.save(monsterCan);
+        else {
+            return monsterCanRepository.findById(monsterCan.getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Can not found"));
+        }
+    }
+
+    // Data is logically deleted when the delete API is called, so the physical deletion from the DB never happens.
     @Transactional
     public void deleteCan(UUID id) {
         if(!monsterCanRepository.existsById(id)){
@@ -43,5 +62,10 @@ public class MonsterCanServiceImpl implements MonsterCanService {
     @Override
     public MonsterCan getCanByName(String name) {
         return monsterCanRepository.findByName(name);
+    }
+
+    @Override
+    public LocalDateTime getSyncDateById(UUID id) {
+        return monsterCanRepository.getSyncDateById(id);
     }
 }

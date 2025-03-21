@@ -39,9 +39,9 @@ public class MonsterCanController {
         );
     }
 
+    // Data is logically deleted when the delete API is called, so the physical deletion from the DB never happens.
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCan(@PathVariable UUID id){
-        System.out.println("id: " + id);
         monsterCanService.deleteCan(id);
         return ResponseEntity.noContent().build();
     }
@@ -50,5 +50,15 @@ public class MonsterCanController {
     public ResponseEntity<MonsterCanDto> getCanByName(@PathVariable String name){
         MonsterCan can = monsterCanService.getCanByName(name);
         return ResponseEntity.ok(monsterCanMapper.toDto(can));
+    }
+
+    @PutMapping()
+    public ResponseEntity<MonsterCanDto> updateCan(@RequestBody MonsterCanDto monsterCanDto){
+        MonsterCan monsterCan = monsterCanMapper.toEntity(monsterCanDto);
+        MonsterCan updatedMonsterCan = monsterCanService.updateCan(monsterCan);
+        return new ResponseEntity<>(
+                monsterCanMapper.toDto(updatedMonsterCan),
+                HttpStatus.OK
+        );
     }
 }
