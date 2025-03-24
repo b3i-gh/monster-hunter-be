@@ -18,16 +18,16 @@ The backend is connected to a PostgreSQL database and exposes a set of REST APIs
  - DELETE /api/v1/cans/{id} : delete a can from the collection
 
 ### Versions
- - 1.0.0 : initial version
-    - implemented basic CRUD APIs to manage directly the collection
+- 1.0.0 : initial version
+  - implemented basic CRUD APIs to manage directly the collection
+- 1.1.0 : 
+  - added _sugarless_ option to the can model
+  - each records now has a datestamp value that is used by the frontend to manage the synchronization with the backend
+  - logical deletion of record is now managed by a _deleted_ attribute of the Can object to facilitate the synchronization with mobile devices
+- 1.2.0 :
+  - implemented the image handling APIs to store, delete and retrieves photos of the cans
 
- - 1.1.0 : 
-   - added _sugarless_ option to the can model
-   - each records now has a datestamp value that is used by the frontend to manage the synchronization with the backend
-   - logical deletion of record is now managed by a _deleted_ attribute of the Can object to facilitate the synchronization with mobile devices
-   
 ### Future implementations:
  - implement all the tests
  - image upload from the mobile app
  - barcode recognition (possibly a front-end feature)
- - mobile synchronization with the backend for offline usage
