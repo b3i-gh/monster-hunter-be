@@ -7,6 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Data
+@Table(name ="photos")
 public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

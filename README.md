@@ -26,7 +26,10 @@ The backend is connected to a PostgreSQL database and exposes a set of REST APIs
   - logical deletion of record is now managed by a _deleted_ attribute of the Can object to facilitate the synchronization with mobile devices
 - 1.2.0 :
   - implemented the image handling APIs to store, delete and retrieves photos of the cans
-
+- 1.2.1 :
+  - added 'NL' to lang ENUM
+  - set the maximum file size for upload to 4MB
+  
 ### Future implementations:
  - implement all the tests
  - image upload from the mobile app
