@@ -29,6 +29,8 @@ The backend is connected to a PostgreSQL database and exposes a set of REST APIs
 - 1.2.1 :
   - added 'NL' to lang ENUM
   - set the maximum file size for upload to 4MB
+- 1.2.2 :
+  - removed the constraint to can name uniqueness
   
 ### Future implementations:
  - barcode recognition (possibly a front-end feature)
