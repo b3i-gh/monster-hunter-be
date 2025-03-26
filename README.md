@@ -31,6 +31,4 @@ The backend is connected to a PostgreSQL database and exposes a set of REST APIs
   - set the maximum file size for upload to 4MB
   
 ### Future implementations:
- - implement all the tests
- - image upload from the mobile app
  - barcode recognition (possibly a front-end feature)
