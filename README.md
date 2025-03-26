@@ -14,7 +14,7 @@ The backend is connected to a PostgreSQL database and exposes a set of REST APIs
  - GET /api/v1/cans : returns the list of all cans
  - POST /api/v1/cans : insert a new can into the collection 
  - GET /api/v1/cans/{id} : retrieve a can and its details by id
- - PUT /api/v1/cans/{id} : update a can's details
+ - PUT /api/v1/cans/{id} : update a can's details (used for logical deletion of a can)
  - DELETE /api/v1/cans/{id} : delete a can from the collection
 
 ### Versions
